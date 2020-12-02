@@ -1,5 +1,6 @@
 <template>
   <div class="bt-transaction-row">
+    <h1> Transaction Row </h1>
   </div>
 </template>
 

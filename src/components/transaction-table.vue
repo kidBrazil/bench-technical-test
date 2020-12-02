@@ -1,24 +1,24 @@
 <template>
   <div class="bt-transaction-table">
-  <h1>Transaction Table</h1>
+    <h1>Transaction Table</h1>
+    <transaction-header />
+    <transaction-row />
   </div>
 </template>
 
 <script>
+import TransactionHeader from '@/components/transaction-header.vue'
+import TransactionRow from '@/components/transaction-row.vue'
+
 export default {
   name: 'TransactionTable',
   props: {
-    msg: String
+    data: Object
   },
-  async created() {
-    try {
-      const response = await this.$axios.get('/transactions/1.json');
-      console.log(response);
-    }
-    catch (err){
-      console.log('error');
-      console.log(err);
-    }
+
+  components: {
+    'transaction-header': TransactionHeader,
+    'transaction-row': TransactionRow
   }
 }
 </script>
