@@ -128,7 +128,9 @@
 }
 
 .u-truncate {
-  @include truncate('100%');
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .u-no-select {
