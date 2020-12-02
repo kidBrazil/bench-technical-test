@@ -6,7 +6,10 @@ module.exports = {
         // Global import of variables and mixins
         // Crowbar-sass is one of my personal libraries, mostly includes useful resets
         // and a good responsive setup.
-        prependData: '@import "~crowbar-sass/styles/global-main.scss";'
+        prependData: `
+          @import "~crowbar-sass/styles/global-main.scss";
+          @import "@/assets/styles/variables.scss";
+        `
       }
     }
   }

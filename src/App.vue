@@ -1,7 +1,9 @@
 <template>
   <main class="bt-main-app">
     <main-navigation/>
-    <router-view/>
+    <div class="bt-wrapper">
+      <router-view/>
+    </div>
   </main>
 </template>
 
