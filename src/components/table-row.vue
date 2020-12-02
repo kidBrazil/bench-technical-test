@@ -1,4 +1,5 @@
 <template>
+  <!-- Dynamic class -->
   <div :class="[isDeposit ? 'bt-deposit' : 'bt-withdrawl']" class="bt-table-row flex flex-vert-center flex-hor-between">
     <div class="bt-table-date">
       {{ date | moment("MMMM Do YYYY") }}
@@ -10,14 +11,14 @@
       {{ account }}
     </div>
     <div class="bt-table-amount">
-      {{ transformedInteger | currency }}
+      {{ convertToFloat | currency }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TransactionRow',
+  name: 'TableRow',
   data() {
     return {
       isDeposit: false
@@ -30,18 +31,20 @@ export default {
     amount: String
   },
   created() {
-    // Check to see if it is a withdrawl or deposit
+    // Check to see if it is a withdrawl or deposit and set the flag appropriately
+    // The flag is used to select which class the row gets for styling based on deposit/withdrawl
     parseInt(this.amount) > 0 ? this.isDeposit = true : this.isDeposi = false;
   },
 
   computed: {
-    // Transform value to positive integers
-    transformedInteger: function() {
-      let integer = +(this.amount);
-      if (integer < 0) {
-        integer = integer * -1;
+    // Transform value from strings to positive floats
+    convertToFloat: function() {
+      // Cast amount to float
+      let float = +(this.amount);
+      if (float < 0) {
+        float = float * -1;
       }
-      return integer;
+      return float;
     }
   }
 }

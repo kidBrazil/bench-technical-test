@@ -1,5 +1,5 @@
 <template>
-  <div class="bt-transaction-table">
+  <div v-if="!error" class="bt-transaction-table">
     <table-header :total="calculateTotal"/>
     <table-row
       v-for="(transaction, index) in transactions"
@@ -10,6 +10,13 @@
       :amount="transaction.Amount">
     </table-row>
   </div>
+  <!-- Error -->
+  <div class="bt-error u-text-center" v-else>
+    <h2> We're sorry...</h2>
+    <span>
+      {{ errorMessage }}
+    </span>
+  </div>
 </template>
 
 <script>
@@ -19,12 +26,14 @@ import TableRow from '@/components/table-row.vue'
 export default {
   name: 'TransactionTable',
   props: {
-    transactions: Array
+    transactions: Array,
+    error: Boolean,
+    errorMessage: String
   },
 
   computed: {
     calculateTotal: function() {
-      // Calculate ledger total
+      // Calculate ledger total based on the amounts of each transaction
       let total = 0;
       for (let i=0; i < this.transactions.length; i++) {
         // Convert strings to floats
@@ -44,8 +53,8 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+// Table Scaffolding -------------------
 .bt-transaction-table {
   border-radius: $standard-radius;
   overflow: hidden;
@@ -118,8 +127,20 @@ export default {
   .bt-table-account {
     color: $color-light-grey;
   }
-
 }
 
+
+// Error -------------------------
+.bt-error {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d( -50%, -50%, 0);
+
+  span {
+    color: $color-light-grey;
+  }
+}
 
 </style>

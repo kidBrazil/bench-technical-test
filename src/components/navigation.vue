@@ -6,7 +6,6 @@
   </nav>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .bt-main-nav {
   width: 100%;
@@ -14,6 +13,10 @@
   text-align: center;
   background: $color-brand-primary;
   color: $white;
+
+  @media #{$portrait} {
+    padding: 25px 0;
+  }
 }
 
 .bt-main-brand {
