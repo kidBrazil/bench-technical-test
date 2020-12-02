@@ -1,7 +1,14 @@
 <template>
   <div class="bt-transaction-table">
-    <table-header total="100"/>
-    <table-row />
+    <table-header :total="calculateTotal"/>
+    <table-row
+      v-for="(transaction, index) in transactions"
+      :key="index"
+      :date="transaction.Date"
+      :company="transaction.Company"
+      :account="transaction.Ledger"
+      :amount="transaction.Amount">
+    </table-row>
   </div>
 </template>
 
@@ -13,6 +20,21 @@ export default {
   name: 'TransactionTable',
   props: {
     transactions: Array
+  },
+
+  computed: {
+    calculateTotal: function() {
+      // Calculate ledger total
+      let total = 0;
+      for (let i=0; i < this.transactions.length; i++) {
+        // Convert strings to floats
+        var castToFloat = +(this.transactions[i].Amount)
+        // Add to total
+        total += castToFloat
+      }
+      // Return total as computed prop
+      return total;
+    }
   },
 
   components: {

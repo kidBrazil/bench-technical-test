@@ -1,16 +1,16 @@
 <template>
-  <div class="bt-table-row flex flex-vert-center flex-hor-between">
+  <div :class="[isDeposit ? 'bt-deposit' : 'bt-withdrawl']" class="bt-table-row flex flex-vert-center flex-hor-between">
     <div>
-      Date
+      {{ date }}
     </div>
     <div>
-      Company
+      {{ company }}
     </div>
     <div>
-      Account
+      {{ account }}
     </div>
     <div>
-     Transaction
+      {{ amount }}
     </div>
   </div>
 </template>
@@ -18,8 +18,20 @@
 <script>
 export default {
   name: 'TransactionRow',
+  data() {
+    return {
+      isDeposit: false
+    }
+  },
   props: {
-    msg: String
+    date: String,
+    company: String,
+    account: String,
+    amount: String
+  },
+  created() {
+    // Check to see if it is a withdrawl or deposit
+    parseInt(this.amount) > 0 ? this.isDeposit = true : this.isDeposi = false;
   }
 }
 </script>
