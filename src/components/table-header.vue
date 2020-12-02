@@ -1,16 +1,16 @@
 <template>
   <div class="bt-table-header flex flex-vert-center flex-hor-between">
-    <div>
+    <div class="bt-table-date">
       Date
     </div>
-    <div>
+    <div class="bt-table-company">
       Company
     </div>
-    <div>
+    <div class="bt-table-account">
       Account
     </div>
-    <div>
-      {{total}}
+    <div class="bt-table-amount">
+      {{ total | currency }}
     </div>
   </div>
 </template>
@@ -23,16 +23,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.bt-table-header{
-  width: 100%;
-  padding: 22px;
-  background: $white;
-  color: $color-brand-primary;
-  font-weight: $heading-weight;
-  font-size: 20px;
-}
-
-</style>
