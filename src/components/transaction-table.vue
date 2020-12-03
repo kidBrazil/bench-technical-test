@@ -37,7 +37,7 @@ export default {
       let total = 0;
       for (let i=0; i < this.transactions.length; i++) {
         // Convert strings to floats
-        var castToFloat = +(this.transactions[i].Amount);
+        var castToFloat = parseFloat(this.transactions[i].Amount);
         // Add to total
         total += castToFloat;
       }

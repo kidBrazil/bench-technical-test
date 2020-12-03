@@ -33,14 +33,14 @@ export default {
   created() {
     // Check to see if it is a withdrawl or deposit and set the flag appropriately
     // The flag is used to select which class the row gets for styling based on deposit/withdrawl
-    parseInt(this.amount) > 0 ? this.isDeposit = true : this.isDeposi = false;
+    parseFloat(this.amount) > 0 ? this.isDeposit = true : this.isDeposi = false;
   },
 
   computed: {
     // Transform value from strings to positive floats
     convertToFloat: function() {
       // Cast amount to float
-      let float = +(this.amount);
+      let float = parseFloat(this.amount);
       if (float < 0) {
         float = float * -1;
       }
